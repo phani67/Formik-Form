@@ -14,6 +14,10 @@ function App() {
       let errors = {};
       if (!values.email) errors.email = "Field required";
       if (!values.password) errors.password = "Field required";
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!emailRegex.test(values.email)) {
+      errors.email = 'Username should be an email';
+      }
       return errors;
     },
   });
@@ -34,6 +38,7 @@ function App() {
             {formik.errors.email}
           </div>
         ) : null}
+       
         <div>Password:</div>
         <input
           id="pswField"
